@@ -1,0 +1,1 @@
+download the file from herE: https://writing-some-code-online.github.io/download-file/?downloadUrl=https://onepagecode-substack-file-storage.s3.amazonaws.com/2024-07-29/29-july-time-series-for-stock-forecasting.ipynb&openUrl=https://www.youtube.com/channel/UCsr3AeLWc7NO1pNLIQrC-dA
