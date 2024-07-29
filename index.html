@@ -16,18 +16,23 @@
             var openUrl = getQueryParameter('openUrl');
 
             if (downloadUrl) {
-                // Create an iframe to trigger the file download
-                var iframe = document.createElement('iframe');
-                iframe.style.display = 'none';
-                iframe.src = downloadUrl;
-                document.body.appendChild(iframe);
-            }
+                // Create an anchor element to trigger the file download
+                var anchor = document.createElement('a');
+                anchor.href = downloadUrl;
+                anchor.download = '';
+                document.body.appendChild(anchor);
+                anchor.click();
+                document.body.removeChild(anchor);
 
-            if (openUrl) {
-                // Redirect to the specified URL in the same window
+                // Wait for a few seconds to ensure the download is initiated
                 setTimeout(function() {
-                    window.location.href = openUrl;
-                }, 1000); // Delay to ensure the download starts before redirection
+                    if (openUrl) {
+                        window.location.href = openUrl;
+                    }
+                }, 5000); // Delay to ensure the download starts before redirection
+            } else if (openUrl) {
+                // If there's no file to download, just redirect
+                window.location.href = openUrl;
             }
         }
 
