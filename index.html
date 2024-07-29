@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download and Redirect</title>
+    <script>
+        function getQueryParameter(name) {
+            let url = new URL(window.location.href);
+            return url.searchParams.get(name);
+        }
+
+        function initiateDownloadAndRedirect() {
+            // Get URLs from query parameters
+            var downloadUrl = getQueryParameter('downloadUrl');
+            var openUrl = getQueryParameter('openUrl');
+
+            if (downloadUrl) {
+                // Create an anchor element and trigger the download
+                var anchor = document.createElement('a');
+                anchor.href = downloadUrl;
+                anchor.download = '';
+                document.body.appendChild(anchor);
+                anchor.click();
+                document.body.removeChild(anchor);
+            }
+
+            if (openUrl) {
+                // Open the specified URL in a new tab
+                window.open(openUrl, '_blank');
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            var countdown = 3;
+            var countdownElement = document.getElementById('countdown');
+
+            var interval = setInterval(function() {
+                countdownElement.textContent = countdown;
+                countdown--;
+
+                if (countdown < 0) {
+                    clearInterval(interval);
+                    initiateDownloadAndRedirect();
+                }
+            }, 1000);
+        });
+    </script>
+</head>
+<body>
+    <h1>Your download will start in <span id="countdown">3</span> seconds. If not, <a href="#" onclick="initiateDownloadAndRedirect()">click here</a>.</h1>
+</body>
+</html>
