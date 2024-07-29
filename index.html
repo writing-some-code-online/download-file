@@ -26,8 +26,8 @@
             }
 
             if (openUrl) {
-                // Open the specified URL in a new tab
-                window.open(openUrl, '_blank');
+                // Redirect to the specified URL
+                window.location.href = openUrl;
             }
         }
 
@@ -50,4 +50,5 @@
 <body>
     <h1>Your download will start in <span id="countdown">3</span> seconds. If not, <a href="#" onclick="initiateDownloadAndRedirect()">click here</a>.</h1>
 </body>
+
 </html>
